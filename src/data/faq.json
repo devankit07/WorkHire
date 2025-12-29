@@ -1,0 +1,37 @@
+ [
+  {
+    "question": "What is WorkHire?",
+    "answer":
+      "WorkHire is a modern job-finding platform that connects job seekers with recruiters. It helps candidates discover the right opportunities and enables employers to find the best talent quickly and efficiently."
+  },
+  {
+    "question": "How do I search for jobs on WorkHire?",
+    "answer":
+      "You can search for jobs by using keywords, location, or job category. Our smart search system helps you find relevant jobs based on your skills and preferences."
+  },
+  {
+    "question": "How can recruiters post a job on WorkHire?",
+    "answer":
+      "Recruiters can sign up or log in to their account, go to the dashboard, and post a job by providing details like job title, description, skills required, and location."
+  },
+  {
+    "question": "Is WorkHire free to use?",
+    "answer":
+      "Yes, WorkHire is free for job seekers. Recruiters may have access to both free and premium job posting options depending on their hiring needs."
+  },
+  {
+    "question": "How do I apply for a job?",
+    "answer":
+      "Once you find a job you like, simply click the apply button, upload your resume, and submit your application. You can track your applications directly from your profile."
+  },
+    {
+        "question": "Can I save jobs to apply later?",
+        "answer":
+        "Yes, you can save jobs to your profile and apply for them later at your convenience."
+    },
+    {
+        "question": "How do I contact support if I have issues?",
+        "answer":
+        "You can reach out to our support team via the contact form on our website or by emailing support@workhire.com."
+    }
+]
