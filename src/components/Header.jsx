@@ -4,6 +4,7 @@ import {
   SignedOut,
   UserButton,
   SignIn,
+  useUser,
 } from "@clerk/clerk-react";
 import { Button } from "./ui/button";
 import { BriefcaseBusiness, PenBox } from "lucide-react";
@@ -12,9 +13,11 @@ import { useEffect, useState } from "react";
 const Header = () => {
   const [showSignin, setShowSignin] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { user } = useUser();
 
   useEffect(() => {
     if (searchParams.get("sign-in")) {
+
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowSignin(true);
     }
@@ -27,7 +30,6 @@ const Header = () => {
     }
   };
 
-  const newLocal = "/Myjobs";
   return (
     <>
       <nav className="flex items-center justify-between px-6 h-25">
@@ -51,12 +53,14 @@ const Header = () => {
           </SignedOut>
 
           <SignedIn>
-            <Link to="/postjobs">
-              <Button variant="destructive" className="rounded-full">
-                <PenBox size={20} className="mr-2" />
-                Post Job
-              </Button>
-            </Link>
+            {user?.unsafeMetadata?.role === "recruiter" && (
+              <Link to="/Postjobs">
+                <Button variant="destructive" className="rounded-full">
+                  <PenBox size={20} className="mr-2" />
+                  Post Job
+                </Button>
+              </Link>
+            )}
 
             <UserButton
               appearance={{
@@ -68,12 +72,12 @@ const Header = () => {
               <UserButton.MenuItems>
                 <UserButton.Link
                   label="My Jobs"
-                  href={newLocal}
+                  href="/Myjobs"
                   labelIcon={<BriefcaseBusiness size={15} />}
                 />
                 <UserButton.Link
                   label="Saved Jobs"
-                  href="/savedjobs"
+                  href="/SavedJobs"
                   labelIcon={<BriefcaseBusiness size={15} />}
                 />
               </UserButton.MenuItems>
