@@ -15,15 +15,20 @@ const Header = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { user } = useUser();
 
+  // open signin modal if ?sign-in=true
   useEffect(() => {
-    if (searchParams.get("sign-in")) {
+    if (searchParams.get("sign-in") === "true") {
 
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowSignin(true);
     }
   }, [searchParams]);
 
-  const handleOverlayClick = (e) => {
+  const openSignin = () => {
+    setSearchParams({ "sign-in": "true" });
+  };
+
+  const closeSignin = (e) => {
     if (e.target === e.currentTarget) {
       setShowSignin(false);
       setSearchParams({});
@@ -33,6 +38,7 @@ const Header = () => {
   return (
     <>
       <nav className="flex items-center justify-between px-6 h-25">
+        {/* Logo */}
         <Link to="/" className="flex items-center h-full">
           <img
             src="/logo.png"
@@ -41,12 +47,13 @@ const Header = () => {
           />
         </Link>
 
-        <div className="flex gap-8">
+        {/* Right actions */}
+        <div className="flex gap-6 items-center">
           <SignedOut>
             <Button
               variant="outline"
               className="h-10 px-6"
-              onClick={() => setShowSignin(true)}
+              onClick={openSignin}
             >
               Login
             </Button>
@@ -54,9 +61,9 @@ const Header = () => {
 
           <SignedIn>
             {user?.unsafeMetadata?.role === "recruiter" && (
-              <Link to="/Postjobs">
+              <Link to="/postjobs">
                 <Button variant="destructive" className="rounded-full">
-                  <PenBox size={20} className="mr-2" />
+                  <PenBox size={18} className="mr-2" />
                   Post Job
                 </Button>
               </Link>
@@ -72,12 +79,12 @@ const Header = () => {
               <UserButton.MenuItems>
                 <UserButton.Link
                   label="My Jobs"
-                  href="/Myjobs"
+                  href="/myjobs"
                   labelIcon={<BriefcaseBusiness size={15} />}
                 />
                 <UserButton.Link
                   label="Saved Jobs"
-                  href="/SavedJobs"
+                  href="/savedjobs"
                   labelIcon={<BriefcaseBusiness size={15} />}
                 />
               </UserButton.MenuItems>
@@ -86,14 +93,15 @@ const Header = () => {
         </div>
       </nav>
 
+      {/* Sign In Modal */}
       {showSignin && (
         <div
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40"
-          onClick={handleOverlayClick}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+          onClick={closeSignin}
         >
           <SignIn
-            signUpForceRedirectUrl="/Onboarding"
-            fallbackRedirectUrl="/Onboarding"
+            signUpForceRedirectUrl="/onboarding"
+            fallbackRedirectUrl="/onboarding"
           />
         </div>
       )}

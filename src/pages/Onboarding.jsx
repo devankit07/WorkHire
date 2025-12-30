@@ -15,6 +15,7 @@ const Onboarding = () => {
       });
 
       navigate(role === "recruiter" ? "/postjobs" : "/job");
+
     } catch (err) {
       console.error("Error updating role:", err);
     }

@@ -15,12 +15,10 @@ const routes = createBrowserRouter([
   {
     element: <Applayout />,
     children: [
+      { path: "/", element: <Landingpage /> },
+
       {
-        path: "/",
-        element: <Landingpage />,
-      },
-      {
-        path: "/Onboarding",
+        path: "/onboarding",
         element: (
           <Protectedroute>
             <Onboarding />
@@ -29,39 +27,43 @@ const routes = createBrowserRouter([
       },
 
       {
-        path: "/Joblistening",
+        path: "/jobs",
         element: (
           <Protectedroute>
             <Joblistening />
           </Protectedroute>
         ),
       },
+
       {
-        path: "/Job",
+        path: "/job",
         element: (
           <Protectedroute>
             <Job />
           </Protectedroute>
         ),
       },
+
       {
-        path: "/Myjobs",
+        path: "/myjobs",
         element: (
           <Protectedroute>
             <Myjobs />
           </Protectedroute>
         ),
       },
+
       {
-        path: "/SavedJobs",
+        path: "/savedjobs",
         element: (
           <Protectedroute>
             <Savedjobs />
           </Protectedroute>
         ),
       },
+
       {
-        path: "/Postjobs",
+        path: "/postjobs",
         element: (
           <Protectedroute>
             <Postjobs />
@@ -71,6 +73,7 @@ const routes = createBrowserRouter([
     ],
   },
 ]);
+
 
 const App = () => {
   return (

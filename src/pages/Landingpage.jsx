@@ -28,7 +28,7 @@ const Landingpage = () => {
       </section>
 
       <div className="flex justify-center gap-4 sm:gap-6 flex-wrap">
-        <Link to="/job">
+       <Link to="/job"> 
           <Button variant="blue" size="lg" className="px-6">
             Get Job
           </Button>
