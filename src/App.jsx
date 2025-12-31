@@ -4,10 +4,10 @@ import Applayout from "./layout/Applayout.jsx";
 import Landingpage from "./pages/Landingpage.jsx";
 import Onboarding from "./pages/Onboarding.jsx";
 import Joblistening from "./pages/Joblistening.jsx";
-import Job from "./pages/Job.jsx";
-import Myjobs from "./pages/Myjobs.jsx";
+import Jobpage from "./pages/Job.jsx";
+import Postjob from "./pages/Postjobs.jsx";
 import Savedjobs from "./pages/Savedjobs.jsx";
-import Postjobs from "./pages/Postjobs.jsx";
+import Myjobs from "./pages/Myjobs.jsx";
 import { ThemeProvider } from "./components/Themeprovider";
 import Protectedroute from "./components/ui/Protectedroute.jsx";
 
@@ -36,10 +36,10 @@ const routes = createBrowserRouter([
       },
 
       {
-        path: "/job",
+        path: "/job/:id",
         element: (
           <Protectedroute>
-            <Job />
+            <Jobpage />   
           </Protectedroute>
         ),
       },
@@ -48,7 +48,16 @@ const routes = createBrowserRouter([
         path: "/myjobs",
         element: (
           <Protectedroute>
-            <Myjobs />
+            <Myjobs />    
+          </Protectedroute>
+        ),
+      },
+
+      {
+        path: "/postjobs",
+        element: (
+          <Protectedroute>
+            <Postjob />
           </Protectedroute>
         ),
       },
@@ -61,19 +70,9 @@ const routes = createBrowserRouter([
           </Protectedroute>
         ),
       },
-
-      {
-        path: "/postjobs",
-        element: (
-          <Protectedroute>
-            <Postjobs />
-          </Protectedroute>
-        ),
-      },
     ],
   },
 ]);
-
 
 const App = () => {
   return (
