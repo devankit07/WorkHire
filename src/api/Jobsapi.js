@@ -49,8 +49,6 @@ export async function savejob(token, { alreadysaved }, saveddata) {
   }
 }
 
-
-// Fetch a single job
 export async function getSinglejob(token, { job_id }) {
   const supabase = await supabaseClient(token);
 
@@ -71,7 +69,6 @@ export async function getSinglejob(token, { job_id }) {
   return data;
 }
 
-// Update job status (Open/Closed)
 export async function Updatehiringstatus(token, { job_id }, isOpen) {
   const supabase = await supabaseClient(token);
 

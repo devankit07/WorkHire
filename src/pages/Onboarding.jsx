@@ -22,14 +22,17 @@ const Onboarding = () => {
   };
 
 useEffect(() => {
+  if (!isLoaded) return;
+
   if (user?.unsafeMetadata?.role) {
     navigate(
       user.unsafeMetadata.role === "recruiter"
         ? "/postjobs"
-        : "/jobs"   // ✅ FIXED
+        : "/jobs",
     );
   }
-}, [user, navigate]);
+}, [user, isLoaded, navigate]);
+
 
 
   if (!isLoaded) {
