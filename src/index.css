@@ -134,3 +134,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.wmde-markdown{
+  background-color: transparent;
+}

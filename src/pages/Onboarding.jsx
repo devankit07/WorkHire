@@ -21,15 +21,16 @@ const Onboarding = () => {
     }
   };
 
-  useEffect(() => {
-    if (user?.unsafeMetadata?.role) {
-      navigate(
-        user.unsafeMetadata.role === "recruiter"
-          ? "/postjobs"
-          : "/job"
-      );
-    }
-  }, [user, navigate]);
+useEffect(() => {
+  if (user?.unsafeMetadata?.role) {
+    navigate(
+      user.unsafeMetadata.role === "recruiter"
+        ? "/postjobs"
+        : "/jobs"   // ✅ FIXED
+    );
+  }
+}, [user, navigate]);
+
 
   if (!isLoaded) {
     return (
