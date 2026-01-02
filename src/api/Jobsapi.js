@@ -52,21 +52,32 @@ export async function savejob(token, { alreadysaved }, saveddata) {
 export async function getSinglejob(token, { job_id }) {
   const supabase = await supabaseClient(token);
 
-  const { data, error } = await supabase
+  // 1. Pehle Job fetch karo
+  const { data: job, error: jobError } = await supabase
     .from("jobs")
-    .select(`
-      *,
-      company:companies(name, logo_url)
-    `)
+    .select("*, company:companies(name, logo_url)")
     .eq("id", job_id)
     .single();
 
-  if (error) {
-    console.error("Error Fetching job:", error);
+  if (jobError) {
+    console.error("Error Fetching job:", jobError);
     return null;
   }
 
-  return data;
+  // 2. Phir usi job_id ki applications fetch karo
+  const { data: applications, error: appError } = await supabase
+    .from("application") // singular table name
+    .select("*")
+    .eq("job_id", job_id);
+
+  if (appError) {
+    console.error("Error Fetching applications:", appError);
+    // Agar application nahi milti to kam se kam job data return kar do
+    return { ...job, applications: [] };
+  }
+
+  // 3. Dono ko merge karke bhej do
+  return { ...job, applications };
 }
 
 export async function Updatehiringstatus(token, { job_id }, isOpen) {
