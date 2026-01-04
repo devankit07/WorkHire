@@ -110,7 +110,6 @@ const Postjobs = () => {
         )}
 
         <div className="flex flex-col sm:flex-row gap-4 items-center">
-          {/* Location Select */}
           <Controller
             name="location"
             control={control}
@@ -132,7 +131,6 @@ const Postjobs = () => {
             )}
           />
 
-          {/* Company Select */}
           <Controller
             name="company_id"
             control={control}

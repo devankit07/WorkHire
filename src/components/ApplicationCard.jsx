@@ -1,13 +1,23 @@
 import { Boxes, BriefcaseBusiness, Download, School } from "lucide-react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import useFetch from "@/hooks/usefetch";
 import { updateapplicationStatus } from "@/api/apiapplication";
 import { BarLoader } from "react-spinners";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-// Key Fix: Props ko destructure kiya { application }
 const ApplicationCard = ({ application, isCandidate = false }) => {
-  
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = application?.resume;
@@ -15,19 +25,15 @@ const ApplicationCard = ({ application, isCandidate = false }) => {
     link.click();
   };
 
-  // Key Fix: status update ke liye application.id bheji hai
   const { loading: loadingHiringStatus, fn: fnHiringStatus } = useFetch(
     updateapplicationStatus,
     {
-      application_id: application.id, 
+      application_id: application.id,
     }
   );
 
   const handlestatuschange = (status) => {
-    fnHiringStatus(status).then(() => {
-        // Status badalne ke baad UI refresh zaroori hai
-        // Aap yahan parent se pass kiya hua fetchJob() bhi call kar sakte hain
-    });
+    fnHiringStatus(status).then(() => {});
   };
 
   return (
@@ -68,13 +74,16 @@ const ApplicationCard = ({ application, isCandidate = false }) => {
         <span className="text-sm">
           {new Date(application?.created_at).toLocaleString()}
         </span>
-        
+
         {isCandidate ? (
           <span className="capitalize font-bold text-blue-400">
             Status: {application?.status}
           </span>
         ) : (
-          <Select onValueChange={handlestatuschange} defaultValue={application.status}>
+          <Select
+            onValueChange={handlestatuschange}
+            defaultValue={application.status}
+          >
             <SelectTrigger className="w-40 bg-gray-800 border-gray-700">
               <SelectValue placeholder="Status" />
             </SelectTrigger>

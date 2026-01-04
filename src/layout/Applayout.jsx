@@ -10,7 +10,9 @@ const Applayout = () => {
         <Header />
         <Outlet />
       </main>
-      <div className="p-10 text-center bg-gray-900 mt-10">Made with ♥  by Ankit</div>
+      <div className="p-10 text-center bg-gray-900 mt-10">
+        Made with ♥ by Ankit
+      </div>
     </div>
   );
 };

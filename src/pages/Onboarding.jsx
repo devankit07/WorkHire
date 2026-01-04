@@ -15,32 +15,23 @@ const Onboarding = () => {
       });
 
       navigate(role === "recruiter" ? "/postjobs" : "/jobs");
-
     } catch (err) {
       console.error("Error updating role:", err);
     }
   };
 
-useEffect(() => {
-  if (!isLoaded) return;
+  useEffect(() => {
+    if (!isLoaded) return;
 
-  if (user?.unsafeMetadata?.role) {
-    navigate(
-      user.unsafeMetadata.role === "recruiter"
-        ? "/postjobs"
-        : "/jobs",
-    );
-  }
-}, [user, isLoaded, navigate]);
-
-
+    if (user?.unsafeMetadata?.role) {
+      navigate(
+        user.unsafeMetadata.role === "recruiter" ? "/postjobs" : "/jobs"
+      );
+    }
+  }, [user, isLoaded, navigate]);
 
   if (!isLoaded) {
-    return (
-     
-        <BarLoader width={'100%'} color="#36d7b7"  mb-4/>
-      
-    );
+    return <BarLoader width={"100%"} color="#36d7b7" mb-4 />;
   }
 
   return (

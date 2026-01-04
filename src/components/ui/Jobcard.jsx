@@ -3,9 +3,10 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./card";
 import { Heart, MapPinIcon, Trash2Icon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "./button";
-import { savejob } from "@/api/Jobsapi";
+import { deletejob, savejob } from "@/api/Jobsapi";
 import useFetch from "@/hooks/usefetch";
 import { useEffect, useState } from "react";
+import { BarLoader } from "react-spinners";
 
 const Jobcard = ({
   job,
@@ -36,6 +37,17 @@ const Jobcard = ({
     onSavedJob();
   };
 
+  const { loading: loadingDeletjob, fn: fnDeletejob } = useFetch(deletejob, {
+    job_id: job.id,
+  });
+
+  const handledeletejob = async () => {
+    if (window.confirm("Are you sure you want to delete this job?")) {
+      await fnDeletejob();
+      onSavedJob();
+    }
+  };
+
   useEffect(() => {
     if (savedjob !== undefined) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -45,6 +57,9 @@ const Jobcard = ({
 
   return (
     <Card className="flex flex-col">
+      {loadingDeletjob && (
+        <BarLoader width={"100%"} color="#36d7b7" className="mt-4" />
+      )}
       <CardHeader>
         <CardTitle className="flex justify-between font-bold">
           {job.title}
@@ -53,6 +68,7 @@ const Jobcard = ({
               fill="red"
               size={18}
               className="text-red-300 cursor-pointer"
+              onClick={handledeletejob}
             />
           )}
         </CardTitle>
@@ -60,9 +76,7 @@ const Jobcard = ({
 
       <CardContent className="flex flex-col gap-4 flex-1">
         <div className="flex justify-between">
-          {job.company && (
-            <img src={job.company.logo_url} className="h-6" />
-          )}
+          {job.company && <img src={job.company.logo_url} className="h-6" />}
           <div className="flex gap-2 items-center">
             <MapPinIcon size={15} /> {job.location}
           </div>

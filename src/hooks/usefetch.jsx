@@ -1,4 +1,4 @@
-import  {useState}  from "react";
+import { useState } from "react";
 import { useSession } from "@clerk/clerk-react";
 
 const useFetch = (cb, Options = {}) => {
@@ -17,11 +17,7 @@ const useFetch = (cb, Options = {}) => {
         template: "supabase",
       });
 
-      const result = await cb(
-        superbaseAccessToken,
-        Options,
-        ...args
-      );
+      const result = await cb(superbaseAccessToken, Options, ...args);
 
       setdata(result);
     } catch (error) {

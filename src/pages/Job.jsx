@@ -80,7 +80,6 @@ const Job = () => {
         </div>
         <div className="flex gap-2 items-center">
           <Briefcase size={18} />
-          {/* applications alias se data length check karega */}
           {job.applications?.length || 0} Applicants
         </div>
         <div className="flex gap-2 items-center">
@@ -132,26 +131,21 @@ const Job = () => {
         />
       </div>
 
-      {/* Render Application Section */}
       {job?.recruiter_id !== user?.id && (
         <Applyjob
           job={job}
           user={user}
           fetchJob={fetchJob}
-          // applications array mein candidate_id match karega
           applied={job?.applications?.find((ap) => ap.candidate_id === user.id)}
         />
       )}
-      {/*view applicants & tracking application */}
+
       {job?.applications?.length > 0 && job?.recruiter_id === user?.id && (
         <div className="flex flex-col gap-2">
           <h2 className="text-2xl sm:text-3xl font-bold">Applications</h2>
           {job?.applications.map((application) => {
             return (
-              <ApplicationCard
-                key={application.id}
-                application={application} 
-              />
+              <ApplicationCard key={application.id} application={application} />
             );
           })}
         </div>

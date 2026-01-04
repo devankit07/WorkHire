@@ -16,6 +16,7 @@ const Savedjobs = () => {
 
   useEffect(() => {
     if (isLoaded) fnsavedjobs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded]);
 
   if (!isLoaded || loadingsavedjobs) {

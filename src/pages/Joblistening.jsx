@@ -33,10 +33,12 @@ const Joblistening = () => {
 
   useEffect(() => {
     if (isLoaded) fncompanies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded]);
 
   useEffect(() => {
     if (isLoaded) fnjobs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded, location, company_id, searchquery]);
 
   const handlesearch = (e) => {
