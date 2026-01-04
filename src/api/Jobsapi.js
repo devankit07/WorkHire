@@ -115,3 +115,20 @@ export async function addnewjob(token,_,jobData) {
 
   return data;
 }
+
+
+
+export async function getsavedjob(token) {
+  const supabase = await supabaseClient(token);
+
+  const { data, error } = await supabase
+    .from("saved_jobs")
+    .select("*,job:jobs(*,company:companies(name,logo_url))")
+
+  if (error) {
+    console.error("Error Fetching saved jobs:", error);
+    return null;
+  }
+
+  return data;
+}
