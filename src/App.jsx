@@ -8,7 +8,7 @@ import Jobpage from "./pages/Job.jsx";
 import Postjob from "./pages/Postjobs.jsx";
 import Savedjobs from "./pages/Savedjobs.jsx";
 import Myjobs from "./pages/Myjobs.jsx";
-import { ThemeProvider } from "./components/Themeprovider";
+import { ThemeProvider } from "./components/ThemeProvider";
 import Protectedroute from "./components/ui/Protectedroute.jsx";
 
 const routes = createBrowserRouter([
