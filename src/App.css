@@ -1,19 +1,39 @@
+
+.dark .grid-background {
+  background-color: #040410; 
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 45px 45px;
+}
+
+.dark .grid-background::before {
+  background: radial-gradient(
+    circle at top,
+    rgba(3, 27, 20, 0.901), 
+    transparent
+  );
+}
+
+
+.light .grid-background {
+  background-color: whitesmoke; 
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.light .grid-background::before {
+  background: radial-gradient(
+    circle at center, 
+    rgba(51, 51, 51, 0.2), 
+    transparent
+  );
+}
 .grid-background {
   position: fixed;
   inset: 0;
-  background:
-    linear-gradient(
-      to right,
-      rgba(255,255,255,0.04) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(255,255,255,0.04) 1px,
-      transparent 1px
-    ),
-    #0f172a;
-  background-size: 80px 80px;
   pointer-events: none;
   z-index: -1;
 }
@@ -22,9 +42,4 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at top,
-    rgba(255,255,255,0.08),
-    rgba(15,23,42,1)
-  );
 }

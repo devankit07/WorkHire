@@ -7,26 +7,24 @@ import {
   useUser,
 } from "@clerk/clerk-react";
 import { Button } from "./ui/button";
-import { BriefcaseBusiness, PenBox } from "lucide-react";
+import { BriefcaseBusiness, PenBox, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTheme } from "./ThemeProvider";
 
 const Header = () => {
   const [showSignin, setShowSignin] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const { user } = useUser();
+  const { theme, setTheme } = useTheme();
 
-  // open signin modal if ?sign-in=true
   useEffect(() => {
     if (searchParams.get("sign-in") === "true") {
-
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowSignin(true);
     }
   }, [searchParams]);
 
-  const openSignin = () => {
-    setSearchParams({ "sign-in": "true" });
-  };
+  const openSignin = () => setSearchParams({ "sign-in": "true" });
 
   const closeSignin = (e) => {
     if (e.target === e.currentTarget) {
@@ -38,7 +36,6 @@ const Header = () => {
   return (
     <>
       <nav className="flex items-center justify-between px-6 h-25">
-        {/* Logo */}
         <Link to="/" className="flex items-center h-full">
           <img
             src="/logo.png"
@@ -47,8 +44,20 @@ const Header = () => {
           />
         </Link>
 
-        {/* Right actions */}
-        <div className="flex gap-6 items-center">
+        <div className="flex gap-4 items-center">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="rounded-full transition-all duration-300"
+          >
+            {theme === "dark" ? (
+              <Sun className="h-[1.2rem] w-[1.2rem] text-yellow-400" />
+            ) : (
+              <Moon className="h-[1.2rem] w-[1.2rem] text-slate-900" />
+            )}
+          </Button>
+
           <SignedOut>
             <Button
               variant="outline"
@@ -69,13 +78,7 @@ const Header = () => {
               </Link>
             )}
 
-            <UserButton
-              appearance={{
-                elements: {
-                  avatarBox: "w-10 h-10",
-                },
-              }}
-            >
+            <UserButton appearance={{ elements: { avatarBox: "w-10 h-10" } }}>
               <UserButton.MenuItems>
                 <UserButton.Link
                   label="My Jobs"
@@ -93,10 +96,9 @@ const Header = () => {
         </div>
       </nav>
 
-      {/* Sign In Modal */}
       {showSignin && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
           onClick={closeSignin}
         >
           <SignIn
