@@ -40,7 +40,7 @@ const Header = () => {
           <img
             src="/logo.png"
             alt="WorkHire Logo"
-            className="h-40 w-auto object-contain"
+            className="h-40 w-auto object-contain dark:invert-0 invert"
           />
         </Link>
 

@@ -33,17 +33,16 @@ const Joblistening = () => {
 
   useEffect(() => {
     if (isLoaded) fncompanies();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded]);
 
   useEffect(() => {
     if (isLoaded) fnjobs();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded, location, company_id, searchquery]);
 
   const handlesearch = (e) => {
     e.preventDefault();
-
     let formdata = new FormData(e.target);
     const query = formdata.get("search-query");
     if (query) setsearchquery(query);
@@ -61,58 +60,58 @@ const Joblistening = () => {
 
   return (
     <div className="px-4 sm:px-6 lg:px-10 xl:px-16">
-      <h1 className="text-gray-300 font-extrabold text-6xl sm:text-7xl text-center pb-8">
+
+      <h1 className="font-extrabold text-6xl sm:text-7xl text-center pb-8 dark:text-white text-slate-900">
         Latest Jobs
       </h1>
 
       <form
         onSubmit={handlesearch}
-        className="h-10 flex w-full gap-2 items-center mb-3"
+        className="h-12 flex w-full gap-2 items-center mb-5"
       >
+        
         <Input
           type="text"
           placeholder="Search Job by Title.."
           name="search-query"
-          className="h-full flex-1 px-4 text-md"
+          className="h-full flex-1 px-4 text-md bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white"
         />
         <Button variant="blue" type="submit" className="h-full sm:w-28">
           Search
         </Button>
       </form>
 
-      <div className="flex flex-col sm:flex-row gap-2">
+      <div className="flex flex-col sm:flex-row gap-3">
+     
         <Select value={location} onValueChange={(value) => setlocation(value)}>
-          <SelectTrigger>
+          <SelectTrigger className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
             <SelectValue placeholder="Filter By Location" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-white dark:bg-slate-900">
             <SelectGroup>
-              {State.getStatesOfCountry("IN").map(({ name }) => {
-                return (
-                  <SelectItem key={name} value={name}>
-                    {name}
-                  </SelectItem>
-                );
-              })}
+              {State.getStatesOfCountry("IN").map(({ name }) => (
+                <SelectItem key={name} value={name}>
+                  {name}
+                </SelectItem>
+              ))}
             </SelectGroup>
           </SelectContent>
         </Select>
+
         <Select
           value={company_id}
           onValueChange={(value) => setcompany_id(value)}
         >
-          <SelectTrigger>
+          <SelectTrigger className="bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white">
             <SelectValue placeholder="Filter By Company" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="bg-white dark:bg-slate-900">
             <SelectGroup>
-              {companies?.map(({ name, id }) => {
-                return (
-                  <SelectItem key={name} value={id}>
-                    {name}
-                  </SelectItem>
-                );
-              })}
+              {companies?.map(({ name, id }) => (
+                <SelectItem key={id} value={id}>
+                  {name}
+                </SelectItem>
+              ))}
             </SelectGroup>
           </SelectContent>
         </Select>
@@ -130,20 +129,19 @@ const Joblistening = () => {
       {loadingjobs && (
         <BarLoader width={"100%"} color="#36d7b7" className="mt-4" />
       )}
+
       {loadingjobs === false && (
         <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           {jobs?.length ? (
-            jobs.map((job) => {
-              return (
-                <Jobcard
-                  key={job.id}
-                  job={job}
-                  savedInit={job?.saved?.length > 0}
-                />
-              );
-            })
+            jobs.map((job) => (
+              <Jobcard
+                key={job.id}
+                job={job}
+                savedInit={job?.saved?.length > 0}
+              />
+            ))
           ) : (
-            <div>No jobs found</div>
+            <div className="dark:text-white text-slate-600">No jobs found</div>
           )}
         </div>
       )}

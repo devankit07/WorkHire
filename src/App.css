@@ -17,7 +17,7 @@
 
 
 .light .grid-background {
-  background-color: whitesmoke; 
+  background-color: rgb(255, 255, 255); 
   background-image: 
     linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);

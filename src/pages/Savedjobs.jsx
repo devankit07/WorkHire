@@ -25,7 +25,7 @@ const Savedjobs = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4">
-      <h1 className="text-gray-300 font-extrabold text-6xl sm:text-7xl text-center pb-8">
+      <h1 className="text-slate-400 font-extrabold text-6xl sm:text-7xl text-center pb-8">
         Saved Jobs
       </h1>
 
