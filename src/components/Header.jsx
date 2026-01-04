@@ -61,13 +61,12 @@ const Header = () => {
           <SignedOut>
             <Button
               variant="outline"
-              className="h-10 px-6"
+              className="h-10 px-6 border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               onClick={openSignin}
             >
               Login
             </Button>
           </SignedOut>
-
           <SignedIn>
             {user?.unsafeMetadata?.role === "recruiter" && (
               <Link to="/postjobs">

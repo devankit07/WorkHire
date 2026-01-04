@@ -1,11 +1,20 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Carousel, CarouselItem, CarouselContent } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselItem,
+  CarouselContent,
+} from "@/components/ui/carousel";
 import companies from "../data/companies.json";
 import Autoplay from "embla-carousel-autoplay";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import faqs from "../data/faq.json";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Landingpage = () => {
   return (
@@ -22,18 +31,27 @@ const Landingpage = () => {
 
       <div className="flex justify-center gap-4 sm:gap-6 flex-wrap">
         <Link to="/jobs">
-          <Button variant="blue" size="lg" className="px-6">Get Job</Button>
+          <Button variant="blue" size="lg" className="px-6">
+            Get Job
+          </Button>
         </Link>
         <Link to="/postjobs">
-          <Button variant="destructive" size="lg" className="px-6">Post Job</Button>
+          <Button variant="destructive" size="lg" className="px-6">
+            Post Job
+          </Button>
         </Link>
       </div>
 
-      <Carousel className="w-full max-w-6xl mx-auto py-8" plugins={[Autoplay({ delay: 2000 })]}>
+      <Carousel
+        className="w-full max-w-6xl mx-auto py-8"
+        plugins={[Autoplay({ delay: 2000 })]}
+      >
         <CarouselContent className="flex items-center gap-6">
           {companies.map(({ name, id, path }) => (
-            <CarouselItem key={id} className="basis-1/2 sm:basis-1/4 lg:basis-1/6 flex justify-center">
-
+            <CarouselItem
+              key={id}
+              className="basis-1/2 sm:basis-1/4 lg:basis-1/6 flex justify-center"
+            >
               <img
                 src={path}
                 alt={name}
@@ -45,34 +63,59 @@ const Landingpage = () => {
       </Carousel>
 
       <div className="w-full flex justify-center h-160">
-        <img src="/girlbg.png" alt="banner" className="w-full max-w-5xl rounded-2xl shadow-lg" />
+        <img
+          src="/girlbg.png"
+          alt="banner"
+          className="w-full max-w-5xl rounded-2xl shadow-lg"
+        />
       </div>
 
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-7xl mx-auto px-4">
-        {/* Card Contrast: Light mode mein border aur shadow add kiya */}
         <Card className="dark:bg-slate-900 bg-white border-slate-200 dark:border-slate-800 shadow-sm">
           <CardHeader>
-            <CardTitle className="dark:text-white text-slate-900">For Job Seekers</CardTitle>
+            <CardTitle className="dark:text-white text-slate-900">
+              For Job Seekers
+            </CardTitle>
           </CardHeader>
           <CardContent className="dark:text-gray-400 text-slate-600">
-            <p>Search and apply for jobs, track your applications, and get personalized recommendations.</p>
+            <p>
+              Search and apply for jobs, track your applications, and get
+              personalized recommendations.
+            </p>
           </CardContent>
         </Card>
         <Card className="dark:bg-slate-900 bg-white border-slate-200 dark:border-slate-800 shadow-sm">
           <CardHeader>
-            <CardTitle className="dark:text-white text-slate-900">For Employers</CardTitle>
+            <CardTitle className="dark:text-white text-slate-900">
+              For Employers
+            </CardTitle>
           </CardHeader>
           <CardContent className="dark:text-gray-400 text-slate-600">
-            <p>Post job listings, manage applications, and find the perfect candidates for your team.</p>
+            <p>
+              Post job listings, manage applications, and find the perfect
+              candidates for your team.
+            </p>
           </CardContent>
         </Card>
       </section>
 
-      <Accordion type="single" collapsible className="w-full max-w-7xl mx-auto px-4 dark:text-white text-slate-900">
+      <Accordion
+        type="single"
+        collapsible
+        className="w-full max-w-7xl mx-auto px-4 dark:text-white text-slate-900"
+      >
         {faqs.map((faq, index) => (
-          <AccordionItem key={index} value={`item-${index + 1}`} className="border-slate-200 dark:border-slate-800">
-            <AccordionTrigger className="hover:no-underline">{faq.question}</AccordionTrigger>
-            <AccordionContent className="dark:text-gray-400 text-slate-600">{faq.answer}</AccordionContent>
+          <AccordionItem
+            key={index}
+            value={`item-${index + 1}`}
+            className="border-slate-200 dark:border-slate-800"
+          >
+            <AccordionTrigger className="hover:no-underline">
+              {faq.question}
+            </AccordionTrigger>
+            <AccordionContent className="dark:text-gray-400 text-slate-600">
+              {faq.answer}
+            </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
