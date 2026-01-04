@@ -21,8 +21,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import MDEditor from "@uiw/react-md-editor";
 import { Button } from "@/components/ui/button";
 import { addnewjob } from "@/api/Jobsapi";
+import Addcompanydrawer from "./Addcompanydrawer";
 
-// 1. FIXED SCHEMA: Requirements string honi chahiye kyunki ye Markdown text hai
 const schema = z.object({
   title: z.string().min(1, { message: "Title is required" }),
   description: z.string().min(1, { message: "Description is required" }),
@@ -59,18 +59,18 @@ const Postjobs = () => {
 
   const {
     loading: loadingcreatejob,
-    error: errorcreatingjob, // Changed from errors to error to match hook
+    error: errorcreatingjob,
     data: datacreatejob,
     fn: fncreatejob,
   } = useFetch(addnewjob);
 
-  // 2. FIXED NAVIGATION: data milne par navigate karein, Navigate component use nahi hota yahan
   useEffect(() => {
     if (datacreatejob?.length > 0) navigate("/jobs");
   }, [loadingcreatejob, datacreatejob, navigate]);
 
   useEffect(() => {
     if (isLoaded) fncompanies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded]);
 
   const onSubmit = (data) => {
@@ -95,9 +95,14 @@ const Postjobs = () => {
         Post a Job
       </h1>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 p-4 pb-0">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-4 p-4 pb-0"
+      >
         <Input placeholder="Job Title" {...register("title")} />
-        {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
+        {errors.title && (
+          <p className="text-red-500 text-sm">{errors.title.message}</p>
+        )}
 
         <Textarea placeholder="Job Description" {...register("description")} />
         {errors.description && (
@@ -136,7 +141,8 @@ const Postjobs = () => {
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select Company">
                     {field.value
-                      ? companies?.find((com) => com.id === Number(field.value))?.name
+                      ? companies?.find((com) => com.id === Number(field.value))
+                          ?.name
                       : "Select Company"}
                   </SelectValue>
                 </SelectTrigger>
@@ -152,24 +158,33 @@ const Postjobs = () => {
               </Select>
             )}
           />
+
+          <Addcompanydrawer fetchcompanies={fncompanies} />
         </div>
 
         <div className="flex flex-col gap-1">
-            <div className="flex gap-4">
-                {errors.location && <p className="text-red-500 text-sm flex-1">{errors.location.message}</p>}
-                {errors.company_id && <p className="text-red-500 text-sm flex-1">{errors.company_id.message}</p>}
-            </div>
+          <div className="flex gap-4">
+            {errors.location && (
+              <p className="text-red-500 text-sm flex-1">
+                {errors.location.message}
+              </p>
+            )}
+            {errors.company_id && (
+              <p className="text-red-500 text-sm flex-1">
+                {errors.company_id.message}
+              </p>
+            )}
+          </div>
         </div>
 
-        {/* 3. FIXED MDEditor: Requirements text editor */}
         <div data-color-mode="dark">
-            <Controller
+          <Controller
             name="requirements"
             control={control}
             render={({ field }) => (
-                <MDEditor value={field.value} onChange={field.onChange} />
+              <MDEditor value={field.value} onChange={field.onChange} />
             )}
-            />
+          />
         </div>
         {errors.requirements && (
           <p className="text-red-500 text-sm">{errors.requirements.message}</p>
@@ -178,7 +193,7 @@ const Postjobs = () => {
         {errorcreatingjob?.message && (
           <p className="text-red-500 text-sm">{errorcreatingjob?.message}</p>
         )}
-        
+
         {loadingcreatejob && <BarLoader width={"100%"} color="#36d7b7" />}
 
         <Button type="submit" variant="blue" size="lg" className="mt-2">
