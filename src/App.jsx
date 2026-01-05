@@ -2,13 +2,13 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Applayout from "./layout/Applayout.jsx";
 import Landingpage from "./pages/Landingpage.jsx";
-import Onboarding from "./pages/Onboarding";
+import Onboarding from "./pages/Onboarding.jsx";
 import Joblistening from "./pages/Joblistening.jsx";
 import Jobpage from "./pages/Job.jsx";
 import Postjob from "./pages/Postjobs.jsx";
 import Savedjobs from "./pages/Savedjobs.jsx";
 import Myjobs from "./pages/Myjobs.jsx";
-import { ThemeProvider } from "./components/ThemeProvider";
+import { ThemeProvider } from "./components/ThemeProvider"; // 'P' capital as per file system
 import Protectedroute from "./components/ui/Protectedroute.jsx";
 
 const routes = createBrowserRouter([
@@ -16,16 +16,14 @@ const routes = createBrowserRouter([
     element: <Applayout />,
     children: [
       { path: "/", element: <Landingpage /> },
-
       {
-        path: "/onboarding",
+        path: "/onboarding", // Logic strictly matches Protectedroute
         element: (
           <Protectedroute>
             <Onboarding />
           </Protectedroute>
         ),
       },
-
       {
         path: "/jobs",
         element: (
@@ -34,7 +32,6 @@ const routes = createBrowserRouter([
           </Protectedroute>
         ),
       },
-
       {
         path: "/job/:id",
         element: (
@@ -43,30 +40,27 @@ const routes = createBrowserRouter([
           </Protectedroute>
         ),
       },
-
       {
-        path: "/myjobs",
-        element: (
-          <Protectedroute>
-            <Myjobs />
-          </Protectedroute>
-        ),
-      },
-
-      {
-        path: "/postjobs",
+        path: "/post-job",
         element: (
           <Protectedroute>
             <Postjob />
           </Protectedroute>
         ),
       },
-
       {
-        path: "/savedjobs",
+        path: "/saved-jobs",
         element: (
           <Protectedroute>
             <Savedjobs />
+          </Protectedroute>
+        ),
+      },
+      {
+        path: "/my-jobs",
+        element: (
+          <Protectedroute>
+            <Myjobs />
           </Protectedroute>
         ),
       },
@@ -74,12 +68,12 @@ const routes = createBrowserRouter([
   },
 ]);
 
-const App = () => {
+function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <RouterProvider router={routes} />
     </ThemeProvider>
   );
-};
+}
 
 export default App;
