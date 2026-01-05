@@ -43,3 +43,8 @@
   position: absolute;
   inset: 0;
 }
+
+html {
+  -ms-overflow-style: none;  
+  scrollbar-width: none; 
+}
