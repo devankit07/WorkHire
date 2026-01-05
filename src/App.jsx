@@ -2,7 +2,7 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Applayout from "./layout/Applayout.jsx";
 import Landingpage from "./pages/Landingpage.jsx";
-import Onboarding from "./pages/Onboarding.jsx";
+import Onboarding from "./pages/Onboarding";
 import Joblistening from "./pages/Joblistening.jsx";
 import Jobpage from "./pages/Job.jsx";
 import Postjob from "./pages/Postjobs.jsx";
