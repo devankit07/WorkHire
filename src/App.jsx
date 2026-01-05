@@ -8,7 +8,7 @@ import Jobpage from "./pages/Job.jsx";
 import Postjob from "./pages/Postjobs.jsx";
 import Savedjobs from "./pages/Savedjobs.jsx";
 import Myjobs from "./pages/Myjobs.jsx";
-import { ThemeProvider } from "./components/ThemeProvider"; // 'P' capital as per file system
+import { ThemeProvider } from "./components/ThemeProvider.jsx";
 import Protectedroute from "./components/ui/Protectedroute.jsx";
 
 const routes = createBrowserRouter([
@@ -16,6 +16,7 @@ const routes = createBrowserRouter([
     element: <Applayout />,
     children: [
       { path: "/", element: <Landingpage /> },
+
       {
         path: "/onboarding", // Logic strictly matches Protectedroute
         element: (
@@ -24,6 +25,7 @@ const routes = createBrowserRouter([
           </Protectedroute>
         ),
       },
+
       {
         path: "/jobs",
         element: (
@@ -32,6 +34,7 @@ const routes = createBrowserRouter([
           </Protectedroute>
         ),
       },
+
       {
         path: "/job/:id",
         element: (
@@ -40,27 +43,30 @@ const routes = createBrowserRouter([
           </Protectedroute>
         ),
       },
+
       {
-        path: "/post-job",
+        path: "/myjobs",
+        element: (
+          <Protectedroute>
+            <Myjobs />
+          </Protectedroute>
+        ),
+      },
+
+      {
+        path: "/postjobs",
         element: (
           <Protectedroute>
             <Postjob />
           </Protectedroute>
         ),
       },
+
       {
-        path: "/saved-jobs",
+        path: "/savedjobs",
         element: (
           <Protectedroute>
             <Savedjobs />
-          </Protectedroute>
-        ),
-      },
-      {
-        path: "/my-jobs",
-        element: (
-          <Protectedroute>
-            <Myjobs />
           </Protectedroute>
         ),
       },
@@ -68,12 +74,12 @@ const routes = createBrowserRouter([
   },
 ]);
 
-function App() {
+const App = () => {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <RouterProvider router={routes} />
     </ThemeProvider>
   );
-}
+};
 
 export default App;
