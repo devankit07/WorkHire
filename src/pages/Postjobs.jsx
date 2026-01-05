@@ -130,7 +130,6 @@ const Postjobs = () => {
               </Select>
             )}
           />
-
           <Controller
             name="company_id"
             control={control}
@@ -156,8 +155,7 @@ const Postjobs = () => {
               </Select>
             )}
           />
-
-          <Addcompanydrawer fetchcompanies={fncompanies} />
+          <Addcompanydrawer fetchCompanies={fncompanies} />
         </div>
 
         <div className="flex flex-col gap-1">
