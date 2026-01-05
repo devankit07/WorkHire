@@ -52,11 +52,11 @@ const Addcompanydrawer = ({ fetchCompanies }) => {
     });
   };
 
- useEffect(() => {
-  if (dataAddCompany?.length > 0) fetchCompanies?.(); 
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [dataAddCompany]);
+  useEffect(() => {
+    if (dataAddCompany?.length > 0) fetchCompanies();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadingAddCompany]);
   return (
     <Drawer>
       <DrawerTrigger asChild>
