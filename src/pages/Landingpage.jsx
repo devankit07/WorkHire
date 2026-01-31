@@ -62,13 +62,7 @@ const Landingpage = () => {
         </CarouselContent>
       </Carousel>
 
-      <div className="w-full flex justify-center h-160">
-        <img
-          src="/girlbg.png"
-          alt="banner"
-          className="w-full max-w-5xl rounded-2xl shadow-lg"
-        />
-      </div>
+
 
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-7xl mx-auto px-4">
         <Card className="dark:bg-slate-900 bg-white border-slate-200 dark:border-slate-800 shadow-sm">
